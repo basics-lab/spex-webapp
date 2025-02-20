@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/spex-webapp/static/css/main.9cee2060.chunk.css",
+    "main.js": "/spex-webapp/static/js/main.4314d0f8.chunk.js",
+    "main.js.map": "/spex-webapp/static/js/main.4314d0f8.chunk.js.map",
+    "runtime~main.js": "/spex-webapp/static/js/runtime~main.44ded4b0.js",
+    "runtime~main.js.map": "/spex-webapp/static/js/runtime~main.44ded4b0.js.map",
+    "static/js/2.ae026ab9.chunk.js": "/spex-webapp/static/js/2.ae026ab9.chunk.js",
+    "static/js/2.ae026ab9.chunk.js.map": "/spex-webapp/static/js/2.ae026ab9.chunk.js.map",
+    "static/js/3.a29efab2.chunk.js": "/spex-webapp/static/js/3.a29efab2.chunk.js",
+    "static/js/3.a29efab2.chunk.js.map": "/spex-webapp/static/js/3.a29efab2.chunk.js.map",
+    "index.html": "/spex-webapp/index.html",
+    "precache-manifest.dedf32c34fd5d9258d853a3f0ab4599c.js": "/spex-webapp/precache-manifest.dedf32c34fd5d9258d853a3f0ab4599c.js",
+    "service-worker.js": "/spex-webapp/service-worker.js",
+    "static/css/main.9cee2060.chunk.css.map": "/spex-webapp/static/css/main.9cee2060.chunk.css.map"
+  }
+}
