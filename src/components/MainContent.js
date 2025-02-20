@@ -11,7 +11,7 @@ function MainContent({ config, changeSelection}) {
           <div className="grid-container">
           {[...Array(num_features).keys()].map((feat) => (
               <div key={feat} className="patch" id={`patch-${feat}`} onClick={() => changeSelection(feat)}>
-              <img src={`${process.env.PUBLIC_URL}/assets/image_${selected_context_id}/split_${feat}.png`} alt="Image Part" />
+              <img src={`${process.env.PUBLIC_URL}/assets/image_${selected_context_id}/split_${feat}.png`} alt="Part" />
               <div className="patch-overlay"></div>
               <div className="patch-text" style={{ visibility: 'hidden' }}></div>
               </div>
@@ -39,7 +39,7 @@ function MainContent({ config, changeSelection}) {
 
 }
 
-function colorTokens(num_features, selected_features, feature_values){
+function colorTokens(num_features, selected_features, feature_values, isConfigComplete){
     for (let feat = 0; feat < `${num_features}`; feat++) {
         let divElement = document.getElementById(`token-${feat}`);
         let tokenElement = divElement.getElementsByClassName("inline-token")[0];
@@ -52,10 +52,15 @@ function colorTokens(num_features, selected_features, feature_values){
         let selectedColor = rootStyles.getPropertyValue('--border-selected-color').trim();
         let borderDefaultColor = rootStyles.getPropertyValue('--border-default-color').trim();
 
-        if (selected_features.includes(feat)) {
+        if (!isConfigComplete) {
             scoreElement.textContent = "";
             scoreElement.style.visibility = "hidden";
             tokenElement.style.backgroundColor = `${overlayDefaultColor}60`;
+            tokenElement.style.border = `3px solid ${overlayDefaultColor}`;
+        } else if (selected_features.includes(feat)) {
+            scoreElement.textContent = "";
+            scoreElement.style.visibility = "hidden";
+            tokenElement.style.backgroundColor = `${selectedColor}60`;
             tokenElement.style.border = `3px solid ${selectedColor}`;
         } else {
             scoreElement.textContent = feature_values[feat].toFixed(2);
@@ -68,7 +73,7 @@ function colorTokens(num_features, selected_features, feature_values){
     }
 }
 
-function colorPatches(num_features, selected_features, feature_values){
+function colorPatches(num_features, selected_features, feature_values, isConfigComplete){
     for (let feat = 0; feat < `${num_features}`; feat++) {
         let divElement = document.getElementById(`patch-${feat}`);
         let imgElement = divElement.querySelector("img");
@@ -82,7 +87,13 @@ function colorPatches(num_features, selected_features, feature_values){
         let selectedColor = rootStyles.getPropertyValue('--border-selected-color').trim();
         let borderDefaultColor = rootStyles.getPropertyValue('--border-default-color').trim();
 
-        if (selected_features.has(feat)) {
+        if (!isConfigComplete) {
+            scoreElement.textContent = "";
+            scoreElement.style.visibility = "hidden";
+            imgElement.style.border = `6px solid ${borderDefaultColor}`;
+            imgOverlay.style.border = `6px solid ${borderDefaultColor}`;
+            imgOverlay.style.backgroundColor = `#00000000`;
+        } else if (selected_features.has(feat)) {
             scoreElement.textContent = "";
             scoreElement.style.visibility = "hidden";
             imgElement.style.border = `6px solid ${selectedColor}`;
@@ -100,7 +111,17 @@ function colorPatches(num_features, selected_features, feature_values){
     }
 }
 
-export { colorTokens , colorPatches};
+function setTokens(tokens){
+    console.log('tokens', tokens);
+    for (let feat = 0; feat < `${tokens.length}`; feat++) {
+        let divElement = document.getElementById(`token-${feat}`);
+        let tokenElement = divElement.getElementsByClassName("inline-token")[0];
+        tokenElement.textContent = tokens[feat];
+        divElement.style.visibility = "visible";
+    }
+}
+
+export { colorTokens , colorPatches, setTokens};
 export default MainContent;
 
 function interpolateColor(value, redColor, greenColor) {

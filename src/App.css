@@ -8,7 +8,7 @@
     --shadow-color: rgba(0, 0, 0, 0.05); /* Light shadow */
     --overlay-negative-color: #a71b1b;
     --overlay-positive-color: #1b701b;
-    --overlay-default-color: #cec32c;
+    --overlay-default-color: #bebeb3;
     --border-selected-color: #cec32c; 
     --border-default-color: #e3e3ecef;
 
@@ -119,14 +119,11 @@ body {
 .grid-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    width: 40%;
+    width: 50%;
     height: auto;
-    max-height: 60vh;
-    column-gap: 15px;
-    row-gap: 15px;
     margin: 0 auto;
     justify-content: center;
-    align-items: center;
+    gap: 20px;
 }
 
 /* Patch Styling */
@@ -135,17 +132,18 @@ body {
     display: inline-block;
 }
 
-.patch img {
-    width: 100%;
-    height: 100%;
-    border: 6px solid var(--border-default-color);
-    border-radius: 10px;
-    transition: border 0.3s ease-in-out, transform 0.3s ease-in-out;
-}
-
 .patch:hover {
     transform: scale(1.05);
     cursor: pointer;
+}
+
+.patch img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: 6px solid var(--border-default-color);
+    border-radius: 10px;
+    transition: border 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 
 .patch-overlay {
@@ -157,6 +155,7 @@ body {
     border: 6px solid rgba(0, 0, 0, 0);
     border-radius: 10px;
     transition: background-color 0.3s ease-in-out;
+    pointer-events: none; /* Ensure overlay does not block interactions */
 }
 
 .patch-text {

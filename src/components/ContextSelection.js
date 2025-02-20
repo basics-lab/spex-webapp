@@ -14,7 +14,7 @@ function ContextSelection({ selectedContextId, numContexts, taskType, contextTex
                     className={`context-image-button ${selectedContextId === contextId ? 'selected' : ''}`}
                     onClick={() => updateConfig('selected_context_id', contextId)}
                 >
-                    <img src={`${process.env.PUBLIC_URL}/assets/image_${contextId}.png`} alt="Image Option"/>
+                    <img src={`${process.env.PUBLIC_URL}/assets/image_${contextId}.png`} alt="Option"/>
                 </div>
                 ))}
             </div>

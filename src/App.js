@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import Sidebar from './components/Sidebar';
-import MainContent, { colorTokens, colorPatches } from './components/MainContent';
+import MainContent, { colorTokens, colorPatches, setTokens} from './components/MainContent';
 
 function App() {
   const [config, setConfig] = useState({
@@ -12,13 +12,14 @@ function App() {
     context_text: [],
     num_prompts: null,
     prompt_text: [],
+    tokens: [],
     num_features: 12,
     selected_features: new Set(),
     feature_values: [],
   });
 
   useEffect(() => {
-    fetch(`${process.env.PUBLIC_URL}/config.json`)
+    fetch(`${process.env.PUBLIC_URL}/assets/config.json`)
       .then((response) => response.json())
       .then((data) => {
         setConfig((prevConfig) => ({
@@ -27,6 +28,23 @@ function App() {
         }));
       });
   }, []);
+
+  useEffect(() => {
+    if (config.selected_context_id !== null){
+      if (config.task === 'text') {
+        colorTokens(config.num_features, Array.from(config.selected_features), config.feature_values, config.selected_prompt_id !== null);
+      } else if (config.task === 'image') {
+        colorPatches(config.num_features, config.selected_features, config.feature_values, config.selected_prompt_id !== null);
+      }
+    }
+    console.log('config', config);
+  }, [config]);
+
+  useEffect(() => {
+    if (config.task === 'text' && config.selected_context_id !== null){
+        setTokens(config.tokens);
+    }
+  }, [config.selected_context_id, config.task, config.tokens]);
 
   const updateConfig = (key, value) => {
     setConfig((prevConfig) => {
@@ -48,41 +66,48 @@ function App() {
         newConfig.num_prompts = contextData.prompts.length;
         newConfig.prompt_text = contextData.prompts;
         newConfig.selected_prompt_id = null;
-      }
-
-      if (key === 'selected_prompt_id') {
-        const taskData = newConfig.context_data[newConfig.task];
-        const contextData = taskData[newConfig.selected_context_id];
-        const promptData = contextData.prompts[value];
-        newConfig.num_features = 12;
-        newConfig.selected_features = new Set();
+        if (newConfig.task === 'text') {
+          newConfig.tokens = contextData.tokens;
+          newConfig.num_features = contextData.tokens.length;
+        } else if (newConfig.task === 'image') {
+          newConfig.tokens = [];
+          newConfig.num_features = 12;
+        }
         newConfig.feature_values = Array(newConfig.num_features).fill(0);
       }
 
-      console.log('Updated config:', key, value);
+      if (key === 'selected_prompt_id') {
+        // const taskData = newConfig.context_data[newConfig.task];
+        // const contextData = taskData[newConfig.selected_context_id];
+        // const promptData = contextData.prompts[value];
+      }
 
+      newConfig.selected_features = new Set();
       return newConfig;
     });
   };
 
   const changeSelection = (clickedFeature) => {
 
-    setConfig((prevConfig) => {
-      if (clickedFeature === null) return prevConfig;
+    if (config.selected_context_id !== null && config.selected_prompt_id !== null) {
 
-      const newConfig = prevConfig;
-      if (newConfig.selected_features.has(clickedFeature)) {
-        newConfig.selected_features.delete(clickedFeature);
-      } else {
-        newConfig.selected_features.add(clickedFeature);
-      }
+      console.log('clicked patch', clickedFeature);
+      const hasFeature = config.selected_features.has(clickedFeature);
 
-      return newConfig;
-    });
+      setConfig((prevConfig) => {
 
-    console.log('feature_values:', config.feature_values);
+        if (clickedFeature === null) return prevConfig;
 
-    colorPatches(config.num_features, config.selected_features, config.feature_values);
+        const newConfig = { ...prevConfig, selected_features: new Set(prevConfig.selected_features) };
+        if (hasFeature) {
+          newConfig.selected_features.delete(clickedFeature);
+        } else {
+          newConfig.selected_features.add(clickedFeature);
+        }
+
+        return newConfig;
+      });
+    }
 
   };
 

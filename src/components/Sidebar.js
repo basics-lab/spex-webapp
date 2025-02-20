@@ -6,7 +6,7 @@ import PromptSelection from './PromptSelection';
 function Sidebar({ config, updateConfig }) {
   return (
     <div className="sidebar">
-      <h2>🕶️ SPEX</h2>
+      <h2><span role="img" aria-label="sunglasses">🕶️</span> SPEX</h2>
       <TaskSelection taskType={config.task} updateConfig={updateConfig} />
       <ContextSelection
         selectedContextId={config.selected_context_id}
