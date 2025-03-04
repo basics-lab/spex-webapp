@@ -27,31 +27,59 @@
     ],
     "text": [
         {
-            "context": "The evolution of artificial intelligence has transformed various industries, from healthcare and finance to transportation and entertainment.",
-            "tokens": ["The", "evolution", "of", "artificial", "intelligence", "has", "transformed", "various", "industries,", "from", "healthcare", "and", "finance", "to", "transportation", "and", "entertainment."],
+            "context_title": "Alpha Go",
+            "context": "In October 2015, in a match against Fan Hui, the original AlphaGo became the first computer Go program to beat a human professional Go player without handicap on a full-sized 19×19 board. In March 2016, it beat Lee Sedol in a five-game match, the first time a computer Go program has beaten a 9-dan professional without handicap. Although it lost to Lee Sedol in the fourth game, Lee resigned in the final game, giving a final score of 4 games to 1 in favor of AlphaGo. One of the most notable moments of the match was AlphaGo's unexpected 'move 37' in game two, a move that initially baffled experts but was later recognized as a profoundly creative and strategic play that demonstrated the program's ability to think beyond conventional human strategies.",
             "prompts": [
-                "How has AI impacted the healthcare industry?",
-                "What role does AI play in financial markets?",
-                "How is AI being used in autonomous vehicles?"
+                    "How are players ranked in professional Go?",
+                    "What was the board size used in the match between AlphaGo and Fan Hui?",
+                    "How many games were played in the series between AlphaGo and Lee Sedol?"
             ],
             "responses": [
-                "AI has revolutionized healthcare by enabling early disease detection, automating administrative tasks, and improving personalized treatment plans using predictive analytics.",
-                "AI enhances financial markets by analyzing vast amounts of data for trend predictions, fraud detection, and algorithmic trading strategies.",
-                "AI powers autonomous vehicles through machine learning algorithms, sensor fusion, and real-time decision-making to enable safe and efficient self-driving cars."
+                "Response 1",
+                "Response 2",
+                "Response 3"
             ]
         },
         {
-            "context": "Quantum computing is poised to revolutionize problem-solving in cryptography, optimization, and complex simulations. Unlike classical computers, quantum computers utilize qubits and superposition to perform computations at an unprecedented scale.",
-            "tokens": ["Quantum", "computing", "is", "poised", "to", "revolutionize", "problem-solving", "in", "cryptography,", "optimization,", "and", "complex", "simulations.", "Unlike", "classical", "computers,", "quantum", "computers", "utilize", "qubits", "and", "superposition", "to", "perform", "computations", "at", "an", "unprecedented", "scale."],
+            "context_title": "Boat Race",
+            "context": "On the River Thames there are a number of boat races every year and these have become very popular with the public. Perhaps the best-known of these races is the University Boat Race. This takes place just before Easter every year and is a competition between teams from the Universities of Oxford and Cambridge. They row from Putney to Mortlake, a distance of about four and a quarter miles. This race has been taking place almost every year since 1829.",
             "prompts": [
-                "What are the fundamentals of quantum computing?",
-                "How do quantum algorithms differ from classical ones?",
-                "What are the potential applications of quantum computing in cybersecurity?"
+                "What is the most popular boat race that takes place on the River Thames?",
+                "How many University Boat Races have taken place?",
+                "How many universities participate in the race?"
             ],
             "responses": [
-                "Quantum computing is based on qubits, which leverage superposition and entanglement to perform complex calculations exponentially faster than classical computers.",
-                "Quantum algorithms exploit properties like superposition and parallelism, enabling solutions to problems that are infeasible for classical computers, such as factoring large numbers.",
-                "Quantum computing poses both threats and opportunities in cybersecurity, including breaking traditional encryption while enabling new cryptographic protocols like quantum key distribution."
+                "Response 1",
+                "Response 2",
+                "Response 3"
+            ]
+        },
+        {
+            "context_title": "Medical Note",
+            "context": "A 52-year-old woman comes to the physician because of a 6-month history of generalized fatigue, low-grade fever, and a 10-kg (22-lb) weight loss. Physical examination shows generalized pallor and splenomegaly. Her hemoglobin concentration is 7.5 g/dL and leukocyte count is 41,800/mm3. Leukocyte alkaline phosphatase activity is low. Peripheral blood smear shows basophilia with myelocytes and metamyelocytes. Bone marrow biopsy shows cellular hyperplasia with proliferation of immature granulocytic cells.",
+            "prompts": [
+                "List the symptoms of the patient.",
+                "What did the bone marrow biopsy reveal?",
+                "Does this information indicate an unregulated expression of the ABL1 gene?"
+            ],
+            "responses": [
+                "Response 1",
+                "Response 2",
+                "Response 3"
+            ]
+        },
+        {
+            "context_title": "Russo-Turkish War",
+            "context": "The Russo-Turkish War of 1735-1739 between Russia and the Ottoman Empire was caused by the Ottoman Empire's war with Persia and continuing raids by the Crimean Tatars. The war also represented Russia's continuing struggle for access to the Black Sea. In 1737, Austria joined the war on Russia's side, known in historiography as the Austro-Turkish War of 1737-1739.",
+            "prompts": [
+                "How many years did the Russo-Turkish War last?",
+                "How many years did the Russo-Turkish War and Austro-Turkish War overlap?",
+                "How many years after the Russo-Turkish War started did Austria join the war on the Russia side?"
+            ],
+            "responses": [
+                "Response 1",
+                "Response 2",
+                "Response 3"
             ]
         }
     ]
