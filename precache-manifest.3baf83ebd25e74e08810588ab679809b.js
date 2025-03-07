@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "1605fc1e5cd7286ff44a9474b2c4e342",
+    "revision": "1baeca30da0497643ccc69b504b4dd8b",
     "url": "/spex-webapp/index.html"
   },
   {
-    "revision": "dfc6c3532feba7f8284e",
+    "revision": "145e9c7b1908aa1e859c",
     "url": "/spex-webapp/static/css/main.058c470d.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/spex-webapp/static/js/3.37578189.chunk.js"
   },
   {
-    "revision": "dfc6c3532feba7f8284e",
-    "url": "/spex-webapp/static/js/main.2b1c631a.chunk.js"
+    "revision": "145e9c7b1908aa1e859c",
+    "url": "/spex-webapp/static/js/main.1b3bfdab.chunk.js"
   },
   {
     "revision": "00465d11237f78855120",
