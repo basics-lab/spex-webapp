@@ -30,14 +30,14 @@
             "context_title": "Alpha Go",
             "context": "In October 2015, in a match against Fan Hui, the original AlphaGo became the first computer Go program to beat a human professional Go player without handicap on a full-sized 19×19 board. In March 2016, it beat Lee Sedol in a five-game match, the first time a computer Go program has beaten a 9-dan professional without handicap. Although it lost to Lee Sedol in the fourth game, Lee resigned in the final game, giving a final score of 4 games to 1 in favor of AlphaGo. One of the most notable moments of the match was AlphaGo's unexpected 'move 37' in game two, a move that initially baffled experts but was later recognized as a profoundly creative and strategic play that demonstrated the program's ability to think beyond conventional human strategies.",
             "prompts": [
-                    "How are players ranked in professional Go?",
-                    "What was the board size used in the match between AlphaGo and Fan Hui?",
-                    "How many games were played in the series between AlphaGo and Lee Sedol?"
+                "How are players ranked in professional Go?",
+                "What was the board size used in the match between AlphaGo and Fan Hui?",
+                "How many games were played in the series between AlphaGo and Lee Sedol?"
             ],
             "responses": [
-                "Response 1",
-                "Response 2",
-                "Response 3"
+                "Using the dan system ranging from 1-dan to 9-dan, based on player's skills and strategies.",
+                "19x19.",
+                "Five games."
             ]
         },
         {
@@ -49,9 +49,9 @@
                 "How many universities participate in the race?"
             ],
             "responses": [
-                "Response 1",
-                "Response 2",
-                "Response 3"
+                "The University boat race.",
+                "186, assuming it took place every year.",
+                "Two."
             ]
         },
         {
@@ -63,9 +63,9 @@
                 "Does this information indicate an unregulated expression of the ABL1 gene?"
             ],
             "responses": [
-                "Response 1",
-                "Response 2",
-                "Response 3"
+                "6-months of generalized fatigue and a low-grade fever.",
+                "Cellular hyperplasia.",
+                "Yes, likely Chronic Myeloid Leukemia (CML) due to BCR-ABL1 fusion gene."
             ]
         },
         {
@@ -77,9 +77,9 @@
                 "How many years after the Russo-Turkish War started did Austria join the war on the Russia side?"
             ],
             "responses": [
-                "Response 1",
-                "Response 2",
-                "Response 3"
+                "Four years.",
+                "The Russo-Turkish War (1735-1739) and the Austro-Turkish War (1737-1739) overlapped two years.",
+                "Two years. Austrai joined in 1737, two years after the start of the Russo-Turkish War."
             ]
         }
     ]

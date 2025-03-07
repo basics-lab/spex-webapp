@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/spex-webapp/static/css/main.058c470d.chunk.css",
-    "main.js": "/spex-webapp/static/js/main.1b3bfdab.chunk.js",
-    "main.js.map": "/spex-webapp/static/js/main.1b3bfdab.chunk.js.map",
+    "main.css": "/spex-webapp/static/css/main.bbd33458.chunk.css",
+    "main.js": "/spex-webapp/static/js/main.15ef29d8.chunk.js",
+    "main.js.map": "/spex-webapp/static/js/main.15ef29d8.chunk.js.map",
     "runtime-main.js": "/spex-webapp/static/js/runtime-main.ef3f7e40.js",
     "runtime-main.js.map": "/spex-webapp/static/js/runtime-main.ef3f7e40.js.map",
     "static/js/2.ce8fcd6b.chunk.js": "/spex-webapp/static/js/2.ce8fcd6b.chunk.js",
@@ -10,15 +10,15 @@
     "static/js/3.37578189.chunk.js": "/spex-webapp/static/js/3.37578189.chunk.js",
     "static/js/3.37578189.chunk.js.map": "/spex-webapp/static/js/3.37578189.chunk.js.map",
     "index.html": "/spex-webapp/index.html",
-    "precache-manifest.3baf83ebd25e74e08810588ab679809b.js": "/spex-webapp/precache-manifest.3baf83ebd25e74e08810588ab679809b.js",
+    "precache-manifest.551c881a29897b784f6eb3a649438e1f.js": "/spex-webapp/precache-manifest.551c881a29897b784f6eb3a649438e1f.js",
     "service-worker.js": "/spex-webapp/service-worker.js",
-    "static/css/main.058c470d.chunk.css.map": "/spex-webapp/static/css/main.058c470d.chunk.css.map",
+    "static/css/main.bbd33458.chunk.css.map": "/spex-webapp/static/css/main.bbd33458.chunk.css.map",
     "static/js/2.ce8fcd6b.chunk.js.LICENSE.txt": "/spex-webapp/static/js/2.ce8fcd6b.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.ef3f7e40.js",
     "static/js/2.ce8fcd6b.chunk.js",
-    "static/css/main.058c470d.chunk.css",
-    "static/js/main.1b3bfdab.chunk.js"
+    "static/css/main.bbd33458.chunk.css",
+    "static/js/main.15ef29d8.chunk.js"
   ]
 }
