@@ -2,26 +2,32 @@
     "image": [
         {
             "context": "<image>",
+            "nx": 8,
+            "ny": 6,
             "prompts": [
-                "What does a cyberpunk cityscape look like?",
-                "How does a busy urban street appear at night?"
+                "What is shown in this image?",
+                "What color is the basketball?",
+                "In what season was this photo taken?"
             ],
             "responses": [
-                "A cyberpunk cityscape features towering skyscrapers, glowing neon billboards, and streets crowded with futuristic vehicles and people in high-tech attire.",
-                "At night, a busy urban street is filled with moving headlights, flashing billboards, and pedestrians navigating through the illuminated sidewalks."
+                "The image shows a dog in mid-air, jumping to catch a basketball.",
+                "The basketball in the image is orange.",
+                "The photo appears to have been taken in autumn."
             ]
         },
         {
             "context": "<image>",
+            "nx": 6,
+            "ny": 4,
             "prompts": [
-                "What does a peaceful mountain retreat look like?",
-                "How do snow-capped peaks enhance the beauty of a valley?",
-                "What is the view from a hiker standing on a cliff?"
+                "What color is the car behind the white car?",
+                "What color is the car to right of the red car?",
+                "How many cars are in this image?"
             ],
             "responses": [
-                "A peaceful mountain retreat consists of lush green meadows, a quiet wooden cabin, and a gently flowing river, surrounded by towering peaks.",
-                "Snow-capped peaks contrast beautifully with the greenery of a valley, adding a majestic and serene ambiance to the landscape.",
-                "A hiker standing on a cliff sees a breathtaking panoramic view of rolling hills, dense forests, and distant mountain peaks stretching across the horizon."
+                "The car behind the white car is red.",
+                "The car to the right of the red car is white.",
+                "There are three cars in this image."
             ]
         }
     ],
@@ -60,12 +66,12 @@
             "prompts": [
                 "List the symptoms of the patient.",
                 "What did the bone marrow biopsy reveal?",
-                "Does this information indicate an unregulated expression of the ABL1 gene?"
+                "Based on the provided information, what is the likely diagnosis for this patient?"
             ],
             "responses": [
                 "6-months of generalized fatigue and a low-grade fever.",
                 "Cellular hyperplasia.",
-                "Yes, likely Chronic Myeloid Leukemia (CML) due to BCR-ABL1 fusion gene."
+                "Chronic Myeloid Leukemia (CML)."
             ]
         },
         {
