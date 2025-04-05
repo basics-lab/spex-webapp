@@ -5,15 +5,22 @@
     --text-inverse-color: #e4e4e4; /* White text for contrast */
     --sidebar-bg: #eae7dc;       /* Light pastel beige */
     --sidebar-border: #d6d1c4;   /* Muted beige border */
+    --about-bg: #dfd4ae;       /* Light pastel beige */
+
     --shadow-color: rgba(0, 0, 0, 0.05); /* Light shadow */
-    --overlay-negative-color: #a71b1b;
-    --overlay-positive-color: #1b701b;
-    --overlay-default-color: #bebeb3;
+    --overlay-negative-color: #dd1313;
+    --overlay-positive-color: #016d01;
+    --overlay-default-color: #e1e1df;
     --border-selected-color: #cec32c; 
     --border-default-color: #e3e3ecef;
 
     --button-selected-color:rgb(127, 0, 93); /* Deep muted purple for selected state */
     --button-unselected-color: rgb(91, 76, 87); /* Dark desaturated blue-gray for unselected state */
+
+    --context-color:rgb(241, 231, 239); /* Deep muted purple for selected state */
+    --user-message-color:rgb(127, 0, 93); /* Deep muted purple for selected state */
+    --bot-message-color:rgb(60, 5, 45); /* Deep muted purple for selected state */
+    --message-title-color:rgb(180, 158, 174); /* Deep muted purple for selected state */
 }
 
 /* General Styles */
@@ -23,7 +30,7 @@ body {
     margin: 0;
     background-color: var(--bg-color);
     color: var(--text-color);
-    font-family: Arial, sans-serif;
+    font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
 /* SIDEBAR */
@@ -32,10 +39,48 @@ body {
     width: 25%;
     height: 100vh;
     background: var(--sidebar-bg);
-    padding: 20px;
     box-shadow: 2px 0 5px var(--shadow-color);
     border-right: 1px solid var(--sidebar-border);
     position: fixed;
+}
+
+.config {
+    padding: 20px;
+    overflow-y: auto;
+    height: 100%;
+}
+
+.main-area {
+    box-sizing: border-box;
+    width: 75%;
+    height: 100vh;
+    padding: 10px;
+    position: fixed;
+    right: 0;
+    overflow-y: auto;
+}
+
+.main-content {
+    box-sizing: border-box;
+    width: 75%;
+    height: 91vh;
+    padding: 10px;
+    position: fixed;
+    right: 0;
+    overflow-y: auto;
+}
+
+.about {
+    padding-left: 5px;
+    padding-bottom: 10px;
+    width: 96%;
+    color: var(--text-color);
+    font-size: 14px;
+    line-height: 1.5;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 /* TASK SELECTION GRID */
@@ -92,9 +137,13 @@ body {
     border: 0px;
     border-radius: 6px;
     font-size: 14px;
-    font-weight: 100;
+    font-weight: 400;
     cursor: pointer;
     transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out;
+}
+
+.prompt-button {
+    text-align: left;
 }
 
 .task-button.selected, .prompt-button.selected, .context-text-button.selected{
@@ -106,24 +155,31 @@ body {
     cursor: pointer;
 }
 
-.main-content {
-    box-sizing: border-box;
-    width: 75%;
-    height: 100vh;
-    padding: 20px;
-    position: fixed;
-    right: 0;
+
+/* Image Container */
+.image-container {
+    max-width: 60%;
+    height: auto;
+    width: fit-content;
+    margin: 10px;
+    margin-left: auto;
+    flex-wrap: wrap;
+    border: 3px solid var(--user-message-color);
+    padding: 5px 10px;
+    border-radius: 15px;
+    border-bottom-right-radius: 0;
 }
 
-/* Grid Container */
 .grid-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    width: 50%;
-    height: auto;
+    width: 90%;
+    height: 80%;
     margin: 0 auto;
+    padding-top: 2%;
+    padding-bottom: 5%;
     justify-content: center;
-    gap: 20px;
+    gap: 5px;
 }
 
 /* Patch Styling */
@@ -138,11 +194,11 @@ body {
 }
 
 .patch img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border: 6px solid var(--border-default-color);
-    border-radius: 10px;
+    display: block;
+    width: 90%;
+    height: auto;
+    border: 2px solid var(--border-default-color);
+    border-radius: 3px;
     transition: border 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 
@@ -150,25 +206,25 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    border: 6px solid rgba(0, 0, 0, 0);
-    border-radius: 10px;
+    width: 90%;
+    bottom: 0;
+    border: 2px solid rgba(0, 0, 0, 0);
+    border-radius: 3px;
     transition: background-color 0.3s ease-in-out;
     pointer-events: none; /* Ensure overlay does not block interactions */
 }
 
 .patch-text {
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 40%;
+    left: 40%;
     transform: translate(-50%, -50%);
     color: black;
     background-color: var(--border-default-color);
     border-radius: 3px;
-    margin: 7px;
-    padding: 5px 10px;
-    font-size: 16px;
+    margin: 5px;
+    padding: 5px 5px;
+    font-size: 12px;
     font-weight: bold;
     text-align: center;
     z-index: 2;
@@ -178,9 +234,17 @@ body {
 
 /* Text token elements */
 .text-container {
+    max-width: 90%;
+    width: fit-content;
+    margin: 10px;
+    margin-left: auto;
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    align-self: flex-end;
+    border: 3px solid var(--user-message-color);
+    padding: 5px 10px;
+    border-radius: 15px;
+    border-bottom-right-radius: 0;
 }
 
 .token-wrapper {
@@ -193,9 +257,13 @@ body {
 .token-text {
     font-size: 13px;
     color: gray;
-    margin-bottom: -3px;
+    margin-bottom: -5px;
+    font-size: 12px;
     height: 14px;
     transition: color 0.3s ease-out;
+    text-align: center;
+    display: block;
+    width: 100%;
 }
 
 .inline-token {
@@ -203,8 +271,9 @@ body {
     background-color: var(--border-default-color);
     border-radius: 6px;
     margin: 5px 2px;
-    padding: 5px 4px;
+    padding: 4px 3px;
     user-select: none;
+    font-size: 14px;
     border: 3px solid var(--border-default-color);
     transition: background-color 0.2s ease-in-out;
 }
@@ -212,4 +281,43 @@ body {
 .inline-token:hover {
     transform: scale(1.05);
     cursor: pointer;
+}
+
+/* Chat boxes */
+.user_message, .bot_message {
+    max-width: 70%;
+    width: fit-content;
+    padding: 10px 15px;
+    margin: 10px;
+    border-radius: 15px;
+    font-size: 14px;
+    line-height: 1.4;
+    position: relative;
+    word-wrap: break-word;
+}
+
+.user_message {
+    background-color: var(--user-message-color);
+    color: var(--text-inverse-color);
+    align-self: flex-end;
+    margin-left: auto;
+    border-bottom-right-radius: 0;
+}
+
+.bot_message {
+    background-color: var(--bot-message-color);
+    color: var(--text-inverse-color);
+    align-self: flex-start;
+    margin-right: auto;
+    border-bottom-left-radius: 0;
+}
+
+.message_title {
+    font-size: 15px;
+    white-space: pre-line;
+    align-self: flex-start;
+    color: var(--message-title-color);
+    font-weight: bold;
+    width: 100%;
+    margin-bottom: 5px;
 }

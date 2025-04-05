@@ -12,9 +12,9 @@ function ContextSelection({ selectedContextId, numContexts, taskType, contextTex
                 <div 
                     key={contextId}
                     className={`context-image-button ${selectedContextId === contextId ? 'selected' : ''}`}
-                    onClick={() => updateConfig('selected_context_id', contextId)}
+                    onClick={() => updateConfig('selectedContextID', contextId)}
                 >
-                    <img src={`${process.env.PUBLIC_URL}/assets/image_${contextId}.png`} alt="Option"/>
+                    <img src={`${process.env.PUBLIC_URL}/assets/image_${contextId}/image.png`} alt="Option"/>
                 </div>
                 ))}
             </div>
@@ -32,7 +32,7 @@ function ContextSelection({ selectedContextId, numContexts, taskType, contextTex
                     key={contextId}
                     type="button"
                     className={`context-text-button ${selectedContextId === contextId ? 'selected' : ''}`}
-                    onClick={() => updateConfig('selected_context_id', contextId)}
+                    onClick={() => updateConfig('selectedContextID', contextId)}
                 >
                     {contextText[contextId]}
                 </button>

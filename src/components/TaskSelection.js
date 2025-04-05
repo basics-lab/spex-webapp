@@ -7,17 +7,17 @@ function TaskSelection({ taskType, updateConfig }) {
       <div className="image-selection-grid">
         <button
             type="button"
-            className={`task-button ${taskType === 'image' ? 'selected' : ''}`}
-            onClick={() => updateConfig('task', 'image')}
-        >
-            <span role="img" aria-label="image">🖼️</span> Image
-        </button>
-        <button
-            type="button"
             className={`task-button ${taskType === 'text' ? 'selected' : ''}`}
             onClick={() => updateConfig('task', 'text')}
         >
             <span role="img" aria-label="text">📄</span> Text
+        </button>
+        <button
+            type="button"
+            className={`task-button ${taskType === 'image' ? 'selected' : ''}`}
+            onClick={() => updateConfig('task', 'image')}
+        >
+            <span role="img" aria-label="image">🖼️</span> Image
         </button>
       </div>
     </div>

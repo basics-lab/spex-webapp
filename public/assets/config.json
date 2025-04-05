@@ -2,56 +2,108 @@
     "image": [
         {
             "context": "<image>",
+            "nx": 8,
+            "ny": 6,
             "prompts": [
-                "What does a cyberpunk cityscape look like?",
-                "How does a busy urban street appear at night?"
+                "What is shown in this image?",
+                "What color is the basketball?",
+                "In what season was this photo taken?"
             ],
             "responses": [
-                "A cyberpunk cityscape features towering skyscrapers, glowing neon billboards, and streets crowded with futuristic vehicles and people in high-tech attire.",
-                "At night, a busy urban street is filled with moving headlights, flashing billboards, and pedestrians navigating through the illuminated sidewalks."
+                "The image shows a dog in mid-air, jumping to catch a basketball.",
+                "The basketball in the image is orange.",
+                "The photo appears to have been taken in autumn."
             ]
         },
         {
             "context": "<image>",
+            "nx": 6,
+            "ny": 4,
             "prompts": [
-                "What does a peaceful mountain retreat look like?",
-                "How do snow-capped peaks enhance the beauty of a valley?",
-                "What is the view from a hiker standing on a cliff?"
+                "What color is the car behind the white car?",
+                "What color is the car to right of the red car?",
+                "How many cars are in this image?"
             ],
             "responses": [
-                "A peaceful mountain retreat consists of lush green meadows, a quiet wooden cabin, and a gently flowing river, surrounded by towering peaks.",
-                "Snow-capped peaks contrast beautifully with the greenery of a valley, adding a majestic and serene ambiance to the landscape.",
-                "A hiker standing on a cliff sees a breathtaking panoramic view of rolling hills, dense forests, and distant mountain peaks stretching across the horizon."
+                "The car behind the white car is red.",
+                "The car to the right of the red car is white.",
+                "There are three cars in this image."
+            ]
+        },
+        {
+            "context": "<image>",
+            "nx": 6,
+            "ny": 4,
+            "prompts": [
+                "You are given a map with pinned locations. I am currently at home, and I need to visit the restaurant, gas station, and university in any order. Determine a route that minimizes the number of river crossings. The rivers are marked in blue on the map.",
+                "You are given a map with pinned locations, where the rivers are marked in blue. Is the gas station on the same side of the river as my home?",
+                "You are given a map with pinned locations. Which of the other pinned locations is the closest to my home?",
+                "You are given a map with pinned locations, where the rivers are marked in blue. Which location is to the west of the river?"
+            ],
+            "responses": [  
+                "Okay, let's analyze the map and figure out the best route to minimize river crossings.\n\n**Understanding the Map**\n\n*   **Home:** Marked with a red house icon.\n*   **Restaurant:** Marked with a blue fork and knife icon.\n*   **Gas Station:** Marked with a purple gas pump icon.\n*   **University:** Marked with a green graduation cap icon.\n*   **Rivers:** Marked in blue.\n\n**Analyzing River Crossings**\n\nLet's consider the number of river crossings for each possible route:\n\n1.  **Home -> Restaurant -> Gas Station -> University:** This route requires 3 river crossings.\n2.  **Home -> Restaurant -> University -> Gas Station:** This route requires 3 river crossings.\n3.  **Home -> Gas Station -> Restaurant -> University:** This route requires 2 river crossings.\n4.  **Home -> Gas Station -> University -> Restaurant:** This route requires 2 river crossings.\n5.  **Home -> University -> Restaurant -> Gas Station:** This route requires 3 river crossings.\n6.  **Home -> University -> Gas Station -> Restaurant:** This route requires 3 river crossings.\n\n**Optimal Route**\n\nBased on this analysis, the routes that minimize river crossings are:\n\n*   **Home -> Gas Station -> Restaurant -> University**\n*   **Home -> Gas Station -> University -> Restaurant**\n\nBoth of these routes require only **2 river crossings**.\n\n**Therefore, either of these two routes would be the most efficient in terms of minimizing river crossings.**",
+                "Let's analyze the map!\n\nThe gas station is marked with a purple pin, and your home is marked with a red pin. Looking at the map, the gas station is on the same side of the river as your home.",
+                "Let's analyze the map!\n\nThe gas station is marked with a purple pin, and your home is marked with a red pin. Looking at the map, the gas station is on the same side of the river as your home.",
+                "Okay, let's analyze the map!\n\nBased on the image, your home is marked with the red house icon. \n\nLooking at the distances, the **restaurant (blue fork and knife icon)** appears to be the closest pinned location to your home.",
+                "Based on the map, the **school (marked with a green graduation cap)** is to the west of the river."
             ]
         }
     ],
     "text": [
         {
-            "context": "The evolution of artificial intelligence has transformed various industries, from healthcare and finance to transportation and entertainment.",
-            "tokens": ["The", "evolution", "of", "artificial", "intelligence", "has", "transformed", "various", "industries,", "from", "healthcare", "and", "finance", "to", "transportation", "and", "entertainment."],
+            "context_title": "Alpha Go",
+            "context": "In October 2015, in a match against Fan Hui, the original AlphaGo became the first computer Go program to beat a human professional Go player without handicap on a full-sized 19×19 board. In March 2016, it beat Lee Sedol in a five-game match, the first time a computer Go program has beaten a 9-dan professional without handicap. Although it lost to Lee Sedol in the fourth game, Lee resigned in the final game, giving a final score of 4 games to 1 in favor of AlphaGo. One of the most notable moments of the match was AlphaGo's unexpected 'move 37' in game two, a move that initially baffled experts but was later recognized as a profoundly creative and strategic play that demonstrated the program's ability to think beyond conventional human strategies.",
             "prompts": [
-                "How has AI impacted the healthcare industry?",
-                "What role does AI play in financial markets?",
-                "How is AI being used in autonomous vehicles?"
+                "How are players ranked in professional Go?",
+                "What was the board size used in the match between AlphaGo and Fan Hui?",
+                "How many games were played in the series between AlphaGo and Lee Sedol?"
             ],
             "responses": [
-                "AI has revolutionized healthcare by enabling early disease detection, automating administrative tasks, and improving personalized treatment plans using predictive analytics.",
-                "AI enhances financial markets by analyzing vast amounts of data for trend predictions, fraud detection, and algorithmic trading strategies.",
-                "AI powers autonomous vehicles through machine learning algorithms, sensor fusion, and real-time decision-making to enable safe and efficient self-driving cars."
+                "Using the dan system ranging from 1-dan to 9-dan, based on player's skills and strategies.",
+                "19x19.",
+                "Five games."
             ]
         },
         {
-            "context": "Quantum computing is poised to revolutionize problem-solving in cryptography, optimization, and complex simulations. Unlike classical computers, quantum computers utilize qubits and superposition to perform computations at an unprecedented scale.",
-            "tokens": ["Quantum", "computing", "is", "poised", "to", "revolutionize", "problem-solving", "in", "cryptography,", "optimization,", "and", "complex", "simulations.", "Unlike", "classical", "computers,", "quantum", "computers", "utilize", "qubits", "and", "superposition", "to", "perform", "computations", "at", "an", "unprecedented", "scale."],
+            "context_title": "Boat Race",
+            "context": "On the River Thames there are a number of boat races every year and these have become very popular with the public. Perhaps the best-known of these races is the University Boat Race. This takes place just before Easter every year and is a competition between teams from the Universities of Oxford and Cambridge. They row from Putney to Mortlake, a distance of about four and a quarter miles. This race has been taking place almost every year since 1829.",
             "prompts": [
-                "What are the fundamentals of quantum computing?",
-                "How do quantum algorithms differ from classical ones?",
-                "What are the potential applications of quantum computing in cybersecurity?"
+                "What is the most popular boat race that takes place on the River Thames?",
+                "How many University Boat Races have taken place?",
+                "How many universities participate in the race?"
             ],
             "responses": [
-                "Quantum computing is based on qubits, which leverage superposition and entanglement to perform complex calculations exponentially faster than classical computers.",
-                "Quantum algorithms exploit properties like superposition and parallelism, enabling solutions to problems that are infeasible for classical computers, such as factoring large numbers.",
-                "Quantum computing poses both threats and opportunities in cybersecurity, including breaking traditional encryption while enabling new cryptographic protocols like quantum key distribution."
+                "The University boat race.",
+                "186, assuming it took place every year.",
+                "Two."
+            ]
+        },
+        {
+            "context_title": "Medical Note",
+            "context": "A 52-year-old woman comes to the physician because of a 6-month history of generalized fatigue, low-grade fever, and a 10-kg (22-lb) weight loss. Physical examination shows generalized pallor and splenomegaly. Her hemoglobin concentration is 7.5 g/dL and leukocyte count is 41,800/mm3. Leukocyte alkaline phosphatase activity is low. Peripheral blood smear shows basophilia with myelocytes and metamyelocytes. Bone marrow biopsy shows cellular hyperplasia with proliferation of immature granulocytic cells.",
+            "prompts": [
+                "List the symptoms of the patient.",
+                "What did the bone marrow biopsy reveal?",
+                "Based on the provided information, what is the likely diagnosis for this patient?"
+            ],
+            "responses": [
+                "6-months of generalized fatigue and a low-grade fever.",
+                "Cellular hyperplasia.",
+                "Chronic Myeloid Leukemia (CML)."
+            ]
+        },
+        {
+            "context_title": "Russo-Turkish War",
+            "context": "The Russo-Turkish War of 1735-1739 between Russia and the Ottoman Empire was caused by the Ottoman Empire's war with Persia and continuing raids by the Crimean Tatars. The war also represented Russia's continuing struggle for access to the Black Sea. In 1737, Austria joined the war on Russia's side, known in historiography as the Austro-Turkish War of 1737-1739.",
+            "prompts": [
+                "How many years did the Russo-Turkish War last?",
+                "How many years did the Russo-Turkish War and Austro-Turkish War overlap?",
+                "How many years after the Russo-Turkish War started did Austria join the war on the Russia side?"
+            ],
+            "responses": [
+                "Four years.",
+                "The Russo-Turkish War (1735-1739) and the Austro-Turkish War (1737-1739) overlapped two years.",
+                "Two years. Austrai joined in 1737, two years after the start of the Russo-Turkish War."
             ]
         }
     ]

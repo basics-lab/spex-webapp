@@ -12,7 +12,7 @@ function PromptSelection({ selectedPromptId, numPrompts, taskType, promptText, u
             key={promptId}
             type="button"
             className={`prompt-button ${selectedPromptId === promptId ? 'selected' : ''}`}
-            onClick={() => updateConfig('selected_prompt_id', promptId)}
+            onClick={() => updateConfig('selectedPromptID', promptId)}
           >
             {promptText[promptId]}
           </button>

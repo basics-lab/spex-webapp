@@ -1,22 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import Sidebar from './components/Sidebar';
-import MainContent, { colorTokens, colorPatches, setTokens} from './components/MainContent';
+import MainContent, {colorTokens, colorPatches, setTokens} from './components/MainContent';
+import {fetchCoefficients, calculateFeatureValues} from './backend/Backend';
 
 function App() {
   const [config, setConfig] = useState({
+    contextData: null,
     task: null,
-    selected_context_id: null,
-    selected_prompt_id: null,
-    num_contexts: null,
-    context_text: [],
-    num_prompts: null,
-    prompt_text: [],
+    selectedContextID: null,
+    selectedPromptID: null,
+    numContexts: null,
+    contextText: [],
+    numPrompts: null,
+    promptText: [],
+    responseText: [],
     tokens: [],
-    num_features: 12,
-    selected_features: new Set(),
-    feature_values: [],
+    numFeatures: null,
+    numFeatureColumns: null,
+    triggerTokenSet: false,
+    triggerFetchCoefficients: false,
+    triggerFeatureValueCalculation: false,
+    triggerTokenVisualization: false,
   });
+
+  const [appData, setAppData] = useState({
+    coefficients: null,
+    selectedFeatures: new Set(),
+    featureValues: null,
+  })
 
   useEffect(() => {
     fetch(`${process.env.PUBLIC_URL}/assets/config.json`)
@@ -24,90 +36,132 @@ function App() {
       .then((data) => {
         setConfig((prevConfig) => ({
           ...prevConfig,
-          context_data: data,
+          contextData: data,
         }));
       });
   }, []);
 
   useEffect(() => {
-    if (config.selected_context_id !== null){
-      if (config.task === 'text') {
-        colorTokens(config.num_features, Array.from(config.selected_features), config.feature_values, config.selected_prompt_id !== null);
-      } else if (config.task === 'image') {
-        colorPatches(config.num_features, config.selected_features, config.feature_values, config.selected_prompt_id !== null);
-      }
+    if (config.triggerTokenSet) {
+      console.log("token set");
+      config.triggerTokenSet = false;
+      setTokens(config.tokens);
     }
-    console.log('config', config);
-  }, [config]);
+  }, [config.triggerTokenSet, config.tokens]);
 
   useEffect(() => {
-    if (config.task === 'text' && config.selected_context_id !== null){
-        setTokens(config.tokens);
+    if (config.triggerFetchCoefficients) {
+      console.log("fetch coefficients");
+      config.triggerFetchCoefficients = false;
+      fetchCoefficients(config.task, config.selectedContextID, config.selectedPromptID)
+        .then((data) => {
+          setAppData((prevConfig) => ({
+        coefficients: data,
+        selectedFeatures: new Set(),
+        featureValues: null,
+          }));
+          setConfig((prevConfig) => ({
+        ...prevConfig,
+        triggerFeatureValueCalculation: true,
+          }));
+        });
     }
-  }, [config.selected_context_id, config.task, config.tokens]);
+  }, [config.triggerFetchCoefficients, config.task, config.selectedContextID, config.selectedPromptID]);
+
+  useEffect(() => {
+    if (config.triggerFeatureValueCalculation) {
+      console.log("calculate feature values");
+      config.triggerFeatureValueCalculation = false;
+      calculateFeatureValues(appData.coefficients, appData.selectedFeatures, config.numFeatures)
+        .then((data) => {
+          setAppData((prevConfig) => ({
+        ...prevConfig,
+        featureValues: data,
+          }));
+          setConfig((prevConfig) => ({
+        ...prevConfig,
+        triggerTokenVisualization: true,
+          }));
+        });
+    }
+  }, [config.triggerFeatureValueCalculation, appData.coefficients, appData.selectedFeatures, config.numFeatures]);
+
+  useEffect(() => {
+    if (config.triggerTokenVisualization) {
+      console.log("visualize tokens");
+      config.triggerTokenVisualization = false;
+      if (config.task === 'text') {
+        colorTokens(config.numFeatures, appData.selectedFeatures, appData.featureValues, config.selectedPromptID !== null);
+      } else if (config.task === 'image') {
+        colorPatches(config.numFeatures, appData.selectedFeatures, appData.featureValues, config.selectedPromptID !== null);
+      }
+    }
+  }, [config.triggerTokenVisualization, config.task, config.numFeatures, appData.selectedFeatures, appData.featureValues, config.selectedPromptID]);
 
   const updateConfig = (key, value) => {
     setConfig((prevConfig) => {
       const newConfig = { ...prevConfig, [key]: value };
 
       if (key === 'task') {
-        const taskData = newConfig.context_data[value];
-        newConfig.num_contexts = taskData.length;
-        newConfig.context_text = taskData.map((item) => item.context);
-        newConfig.selected_context_id = null;
-        newConfig.selected_prompt_id = null;
-        newConfig.num_prompts = null;
-        newConfig.prompt_text = [];
+        const taskData = newConfig.contextData[value];
+        newConfig.numContexts = taskData.length;
+        newConfig.contextText = taskData.map((item) => item.context_title);
+        newConfig.selectedContextID = null;
+        newConfig.selectedPromptID = null;
+        newConfig.numPrompts = null;
+        newConfig.promptText = [];
       }
 
-      if (key === 'selected_context_id') {
-        const taskData = newConfig.context_data[newConfig.task];
+      if (key === 'selectedContextID') {
+        const taskData = newConfig.contextData[newConfig.task];
         const contextData = taskData[value];
-        newConfig.num_prompts = contextData.prompts.length;
-        newConfig.prompt_text = contextData.prompts;
-        newConfig.selected_prompt_id = null;
+        newConfig.numPrompts = contextData.prompts.length;
+        newConfig.promptText = contextData.prompts;
+        newConfig.responseText = contextData.responses;
+        newConfig.selectedPromptID = null;
         if (newConfig.task === 'text') {
-          newConfig.tokens = contextData.tokens;
-          newConfig.num_features = contextData.tokens.length;
+          newConfig.tokens = contextData.context.split(' ');
+          newConfig.numFeatures = newConfig.tokens.length;
+          newConfig.numFeatureColumns = null;
         } else if (newConfig.task === 'image') {
           newConfig.tokens = [];
-          newConfig.num_features = 12;
+          newConfig.numFeatures = contextData.nx * contextData.ny;
+          newConfig.numFeatureColumns = contextData.nx;
         }
-        newConfig.feature_values = Array(newConfig.num_features).fill(0);
+        newConfig.triggerTokenSet = true;
+        newConfig.triggerTokenVisualization = true;
       }
 
-      if (key === 'selected_prompt_id') {
-        // const taskData = newConfig.context_data[newConfig.task];
-        // const contextData = taskData[newConfig.selected_context_id];
-        // const promptData = contextData.prompts[value];
+      if (key === 'selectedPromptID') {
+        newConfig.triggerFetchCoefficients = true;
       }
 
-      newConfig.selected_features = new Set();
       return newConfig;
     });
   };
 
   const changeSelection = (clickedFeature) => {
 
-    if (config.selected_context_id !== null && config.selected_prompt_id !== null) {
+    if (config.selectedContextID !== null && config.selectedPromptID !== null) {
 
-      console.log('clicked patch', clickedFeature);
-      const hasFeature = config.selected_features.has(clickedFeature);
+      const hasFeature = appData.selectedFeatures.has(clickedFeature);
 
-      setConfig((prevConfig) => {
+      setAppData((prevConfig) => {
 
         if (clickedFeature === null) return prevConfig;
 
-        const newConfig = { ...prevConfig, selected_features: new Set(prevConfig.selected_features) };
+        const newConfig = { ...prevConfig, selectedFeatures: new Set(prevConfig.selectedFeatures) };
         if (hasFeature) {
-          newConfig.selected_features.delete(clickedFeature);
+          newConfig.selectedFeatures.delete(clickedFeature);
         } else {
-          newConfig.selected_features.add(clickedFeature);
+          newConfig.selectedFeatures.add(clickedFeature);
         }
 
         return newConfig;
       });
     }
+
+    config.triggerFeatureValueCalculation = true;
 
   };
 
