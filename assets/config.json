@@ -29,6 +29,24 @@
                 "The car to the right of the red car is white.",
                 "There are three cars in this image."
             ]
+        },
+        {
+            "context": "<image>",
+            "nx": 6,
+            "ny": 4,
+            "prompts": [
+                "You are given a map with pinned locations. I am currently at home, and I need to visit the restaurant, gas station, and university in any order. Determine a route that minimizes the number of river crossings. The rivers are marked in blue on the map.",
+                "You are given a map with pinned locations, where the rivers are marked in blue. Is the gas station on the same side of the river as my home?",
+                "You are given a map with pinned locations. Which of the other pinned locations is the closest to my home?",
+                "You are given a map with pinned locations, where the rivers are marked in blue. Which location is to the west of the river?"
+            ],
+            "responses": [  
+                "Okay, let's analyze the map and figure out the best route to minimize river crossings.\n\n**Understanding the Map**\n\n*   **Home:** Marked with a red house icon.\n*   **Restaurant:** Marked with a blue fork and knife icon.\n*   **Gas Station:** Marked with a purple gas pump icon.\n*   **University:** Marked with a green graduation cap icon.\n*   **Rivers:** Marked in blue.\n\n**Analyzing River Crossings**\n\nLet's consider the number of river crossings for each possible route:\n\n1.  **Home -> Restaurant -> Gas Station -> University:** This route requires 3 river crossings.\n2.  **Home -> Restaurant -> University -> Gas Station:** This route requires 3 river crossings.\n3.  **Home -> Gas Station -> Restaurant -> University:** This route requires 2 river crossings.\n4.  **Home -> Gas Station -> University -> Restaurant:** This route requires 2 river crossings.\n5.  **Home -> University -> Restaurant -> Gas Station:** This route requires 3 river crossings.\n6.  **Home -> University -> Gas Station -> Restaurant:** This route requires 3 river crossings.\n\n**Optimal Route**\n\nBased on this analysis, the routes that minimize river crossings are:\n\n*   **Home -> Gas Station -> Restaurant -> University**\n*   **Home -> Gas Station -> University -> Restaurant**\n\nBoth of these routes require only **2 river crossings**.\n\n**Therefore, either of these two routes would be the most efficient in terms of minimizing river crossings.**",
+                "Let's analyze the map!\n\nThe gas station is marked with a purple pin, and your home is marked with a red pin. Looking at the map, the gas station is on the same side of the river as your home.",
+                "Let's analyze the map!\n\nThe gas station is marked with a purple pin, and your home is marked with a red pin. Looking at the map, the gas station is on the same side of the river as your home.",
+                "Okay, let's analyze the map!\n\nBased on the image, your home is marked with the red house icon. \n\nLooking at the distances, the **restaurant (blue fork and knife icon)** appears to be the closest pinned location to your home.",
+                "Based on the map, the **school (marked with a green graduation cap)** is to the west of the river."
+            ]
         }
     ],
     "text": [
