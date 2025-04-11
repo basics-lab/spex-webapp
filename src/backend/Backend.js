@@ -58,7 +58,7 @@ async function calculateFeatureValues(coefficients, selectedFeatures, numFeature
     // Normalize influence
     let maxVal = Math.max(...featureSums);
     if (maxVal !== 0){
-        featureSums = featureSums.map(val => val / maxVal);
+        featureSums = featureSums.map(val => val / 1);
     } else {
         featureSums = featureSums.map(val => 0);
     }
