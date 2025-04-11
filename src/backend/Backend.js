@@ -6,9 +6,11 @@ async function fetchCoefficients(task, context_id, prompt_id){
 
 async function calculateFeatureValues(coefficients, selectedFeatures, numFeatures){
     let featureSums = new Array(numFeatures).fill(0);
+    let origFeatureSums = new Array(numFeatures).fill(0);
 
     // Project the Fourier coefficients
     let projectedCoefficients = {};
+    let unprojectedCoefficients = {};
     for (let key in coefficients) {
         var newKey = '0'.repeat(numFeatures).split("");
         var newValue = coefficients[key];
@@ -19,13 +21,18 @@ async function calculateFeatureValues(coefficients, selectedFeatures, numFeature
                 } else {
                     newKey[i] = '1'
                 }
-            }
         }
         newKey = newKey.join("");
         if (newKey in projectedCoefficients) {
             projectedCoefficients[newKey] = projectedCoefficients[newKey] + newValue;
         } else {
             projectedCoefficients[newKey] = newValue;
+        }
+
+        if (key in unprojectedCoefficients) {
+            unprojectedCoefficients[key] = unprojectedCoefficients[key] + coefficients[key];
+        } else {
+            unprojectedCoefficients[key] = coefficients[key];
         }
     }
 
@@ -34,6 +41,13 @@ async function calculateFeatureValues(coefficients, selectedFeatures, numFeature
         for (let i = 0; i < numFeatures; i++) {
             if (key[i] === '1') {
                 featureSums[i] += (projectedCoefficients[key] ** 2);
+            }
+        }
+    }
+    for (let key in unprojectedCoefficients) {
+        for (let i = 0; i < numFeatures; i++) {
+            if (key[i] === '1') {
+                origFeatureSums[i] += (unprojectedCoefficients[key] ** 2);
             }
         }
     }
@@ -56,9 +70,10 @@ async function calculateFeatureValues(coefficients, selectedFeatures, numFeature
     // }
 
     // Normalize influence
-    let maxVal = Math.max(...featureSums);
-    if (maxVal !== 0){
-        featureSums = featureSums.map(val => val / 1);
+    let origMaxVal = Math.max(...origFeatureSums);
+
+    if (origMaxVal !== 0){
+        featureSums = featureSums.map(val => val / origMaxVal);
     } else {
         featureSums = featureSums.map(val => 0);
     }
