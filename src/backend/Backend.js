@@ -21,6 +21,7 @@ async function calculateFeatureValues(coefficients, selectedFeatures, numFeature
                 } else {
                     newKey[i] = '1'
                 }
+            }
         }
         newKey = newKey.join("");
         if (newKey in projectedCoefficients) {
