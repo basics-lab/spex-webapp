@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/spex-webapp/static/css/main.e41d787c.css",
-    "main.js": "/spex-webapp/static/js/main.364e0476.js",
+    "main.js": "/spex-webapp/static/js/main.d1a300fd.js",
     "static/js/453.29552839.chunk.js": "/spex-webapp/static/js/453.29552839.chunk.js",
     "index.html": "/spex-webapp/index.html",
     "main.e41d787c.css.map": "/spex-webapp/static/css/main.e41d787c.css.map",
-    "main.364e0476.js.map": "/spex-webapp/static/js/main.364e0476.js.map",
+    "main.d1a300fd.js.map": "/spex-webapp/static/js/main.d1a300fd.js.map",
     "453.29552839.chunk.js.map": "/spex-webapp/static/js/453.29552839.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e41d787c.css",
-    "static/js/main.364e0476.js"
+    "static/js/main.d1a300fd.js"
   ]
 }
